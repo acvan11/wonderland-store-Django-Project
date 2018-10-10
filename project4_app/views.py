@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.shortcuts import render, redirect
 from .models import Product
+from django.http import HttpResponse
 from .forms import ProductForm
 
 
@@ -42,7 +43,7 @@ def product_delete(request, pk):
  # Auth-related routes
 def signup(request):
 	if request.method == 'GET':
-		return render(request, 'todoapp/signup.html')
+		return render(request, 'project4_app/signup.html')
 	elif request.method == 'POST':
 		username = request.POST['username']
 		password = request.POST['password']
@@ -57,12 +58,12 @@ def signup(request):
 				# auth.login(request, user)
 				return login(request)
 		except:
-			return render(request, 'todoapp/signup.html', { 'error': 'Arggggg!' })
+			return render(request, 'project4_app/signup.html', { 'error': 'Arggggg!' })
 		return HttpResponse('POST to /signup')
 
 def login(request):
 	if request.method == 'GET':
-		return render(request, 'todoapp/login.html')
+		return render(request, 'project4_app/login.html')
 	elif request.method == 'POST':
 		return HttpResponse('posignup')
 		username = request.POST['username']
@@ -72,7 +73,7 @@ def login(request):
 			auth.login(request, user)
 			return redirect('index')
 		else:            
-			return render(request, 'todoapp/login.html', { 'error': 'Invalid credentials' })
+			return render(request, 'project4_app/login.html', { 'error': 'Invalid credentials' })
 
 def logout(request):
 	return HttpResponse('logout')
