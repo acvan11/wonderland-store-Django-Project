@@ -1,3 +1,5 @@
+from django.contrib.auth.models import User
+from django.contrib import auth
 from django.shortcuts import render, redirect
 from .models import Product
 from .forms import ProductForm
@@ -37,10 +39,43 @@ def product_delete(request, pk):
 	Product.objects.get(id=pk).delete()
 	return redirect('product_list')
 
+ # Auth-related routes
+def signup(request):
+	if request.method == 'GET':
+		return render(request, 'todoapp/signup.html')
+	elif request.method == 'POST':
+		username = request.POST['username']
+		password = request.POST['password']
+		firstname = request.POST['firstname']
+		lastname = request.POST['lastname']
+		try:
+			user = User.objects.create_user(username=username, 
+				password=password, 
+				first_name = firstname,
+				last_name = lastname)
+			if user is not None:
+				# auth.login(request, user)
+				return login(request)
+		except:
+			return render(request, 'todoapp/signup.html', { 'error': 'Arggggg!' })
+		return HttpResponse('POST to /signup')
 
+def login(request):
+	if request.method == 'GET':
+		return render(request, 'todoapp/login.html')
+	elif request.method == 'POST':
+		return HttpResponse('posignup')
+		username = request.POST['username']
+		password = request.POST['password']
+		user = auth.authenticate(username = username, password=password)
+		if user is not None:
+			auth.login(request, user)
+			return redirect('index')
+		else:            
+			return render(request, 'todoapp/login.html', { 'error': 'Invalid credentials' })
 
-
-
-
-
+def logout(request):
+	return HttpResponse('logout')
+	auth.logout(request)
+	return redirect('index')
 
