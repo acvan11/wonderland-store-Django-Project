@@ -8,6 +8,10 @@ def product_list(request):
 	return render(request, 'product_list.html', {'products': products})
 
 
+def product_detail(request, pk):
+	product = Product.objects.get(id=pk)
+	return render(request, "product_detail.html", {'product' : product})
+
 def product_edit(request, pk):
 	products = Product.objects.get(id=pk)
 	if request.method == 'POST':
@@ -20,9 +24,6 @@ def product_edit(request, pk):
 		return render(request, 'product_new.html', {'form': form})
 
 
-def details_product(request, pk):
-	product = Product.objects.get(id=pk)
-	return render(request, "details.html", {'product' : product})
 
 # list of all products
 def list_product(request):
