@@ -33,6 +33,13 @@ def product_create(request):
 		form = ProductForm()
 		return render(request, 'product_new.html', {'form': form})
 
+def product_delete(request, pk):
+	Product.objects.get(id=pk).delete()
+	return redirect('product_list')
+
+
+
+
 
 
 
