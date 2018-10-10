@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>Items<a href="{% url 'product_create' %}">(+)</a></h2>
+<h2>Items</h2>
 <ul>
 	{% for product in products %}
 	<li>
-		<a href="{% url 'product_detail' pk=product.pk %}">{{ product.name }}</a>
+		<a href="{% url 'product_detail' pk=product.pk %}">{{ product.name }}</a> <br/>
 		<img src="{{product.image_url}}" alt="product_photo" class="product_photo"/>
 	</li>
 
 	{% endfor %}
 </ul>
+<a href="{% url 'product_create' %}">Add items</a>
 {% endblock %}

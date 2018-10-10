@@ -55,6 +55,9 @@ a.delete {
 a.delete {
   background-color: red;
 }
+a.edit {
+  background-color: blue;
+}
 .product-photo {
   width: 400px;
 }
