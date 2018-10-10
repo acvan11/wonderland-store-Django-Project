@@ -23,11 +23,14 @@ class ProductModelForm(forms.ModelForm):
 		"description",
 		"price"
 		]
-
-
-"""
-name = models.CharField(max_length=100)
-	description = models.TextField(blank=True, null=True)
-	price = models.FloatField(null=True)
-	sales_price = models.FloatField(null=True)
-"""
+		widgets = {
+		"description": forms.Textarea(
+			attrs={
+			"placeholder": "Product Description"
+			}
+			),
+		"name": forms.TextInput(
+			attrs={
+			"placeholder": "Product Name"
+			})
+		}
