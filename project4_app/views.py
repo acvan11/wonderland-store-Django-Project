@@ -1,22 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Product
-
-# Create your views here.
-
-from .forms import ProductAddForm, ProductModelForm
+from .forms import ProductForm
 
 
-# detail of one item
-
-def create_view(request):
-
-	form = ProductModelForm(request.POST or None)
-	if form.is_valid():
-		instance = form.save(commit=False)
-		instance.sales_price = instance.price 
-		instance.save()
-
-	return render(request, "create_view.html", {"form" : form})
+def product_list(request):
+	products = Product.objects.all()
+	return render(request, 'product_list.html', {'products': products})
 
 
 def edit_product(request, pk):
