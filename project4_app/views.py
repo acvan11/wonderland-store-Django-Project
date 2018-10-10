@@ -8,14 +8,16 @@ def product_list(request):
 	return render(request, 'product_list.html', {'products': products})
 
 
-def edit_product(request, pk):
-	product = Product.objects.get(id=pk)
-	form = ProductModelForm(request.POST or None)
-	if form.is_valid():
-		instance = form.save(commit=False)
-		instance.sales_price = instance.price 
-		instance.save()
-	return render(request,"edit_product.html", {"form": form})
+def product_edit(request, pk):
+	products = Product.objects.get(id=pk)
+	if request.method == 'POST':
+		form = ProductForm(request.POST, instance=product)
+		if form.is_valid():
+			product = form.save()
+			return redirect('product_detail', pk=product.pk)
+	else:
+		form = ProductForm(instance=product)
+		return render(request, 'product_new.html', {'form': form})
 
 
 def details_product(request, pk):
