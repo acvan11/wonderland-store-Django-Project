@@ -13,7 +13,7 @@ def product_detail(request, pk):
 	return render(request, "product_detail.html", {'product' : product})
 
 def product_edit(request, pk):
-	products = Product.objects.get(id=pk)
+	product = Product.objects.get(id=pk)
 	if request.method == 'POST':
 		form = ProductForm(request.POST, instance=product)
 		if form.is_valid():
