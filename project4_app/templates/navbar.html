@@ -4,9 +4,6 @@ https://getbootstrap.com/examples/navbar/
 -->
 <nav class="navbar navbar-default">
   <div class="container-fluid">
-    <div class="navbar-header">
-      <a class="navbar-brand" href="#">Second Hand Store</a>
-    </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li class="active"><a href="{% url 'product_list' %}">Home</a></li>
@@ -16,6 +13,7 @@ https://getbootstrap.com/examples/navbar/
          <li><a href="{% url 'signup' %}">Sign Up</a></li>
          <li><a href="{% url 'login' %}">Log In</a></li>
        {% else %}
+       <a class="navbar-brand" href="/">Cart</a>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                role="button" aria-haspopup="true" aria-expanded="false">
@@ -24,7 +22,6 @@ https://getbootstrap.com/examples/navbar/
             
             <ul class="dropdown-menu">
               <li><a href="{% url 'logout' %}">Logout</a></li>
-              <li><a href="/admin">Admin</a></li>
             </ul>
          </li>
        {% endif %}

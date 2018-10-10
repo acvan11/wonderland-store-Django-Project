@@ -59,7 +59,7 @@ a.edit {
   background-color: blue;
 }
 .product-photo {
-  width: 400px;
+  width: inherit;
 }
 span.nationality {
   font-size: .5em;

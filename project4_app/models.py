@@ -13,3 +13,17 @@ class Product(models.Model):
 
 	def __str__(self):
 		return self.name
+
+# class Order(models.Model):
+# 	product = models.ForeignKey(Product, on_delete=models.CASCADE)
+# 	user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
+# 	quantity = models.IntegerField()
+# 	price = models.IntegerField(default = 0)
+
+
+#     def total_price(self):
+#         self.price = int(self.product.sales_price) * int(self.quantity)
+
+
+#     def __str__(self):
+#         return str(self.price)

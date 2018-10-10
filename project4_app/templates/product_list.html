@@ -2,14 +2,20 @@
 
 {% block content %}
 <h2>Items</h2>
-<ul>
-	{% for product in products %}
-	<li>
-		<a href="{% url 'product_detail' pk=product.pk %}">{{ product.name }}</a> <br/>
-		<img src="{{product.image_url}}" alt="product_photo" class="product_photo"/>
-	</li>
+<div class="row">
+	<div class="col-sm-12 col-md-8 offset-md-2">	
+		
+	
+		{% for product in products %}
+			<div class="col-sm-12 col-md-4">
+				
+					<a href="{% url 'product_detail' pk=product.pk %}">{{ product.name }}</a> <br/>
+					<img src="{{product.image_url}}" alt="product_photo" class="product-photo"/>
+			</div>
 
-	{% endfor %}
-</ul>
+		{% endfor %}
+		
+	</div>
+</div>
 <a href="{% url 'product_create' %}">Add items</a>
 {% endblock %}
