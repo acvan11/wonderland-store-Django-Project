@@ -86,8 +86,13 @@ def cart(request):
 		order = Order(
 				product = request.POST['product'],
 				quantity = request.POST['quantity'],
+				user_id = user,
 			)
 		order.total_price()
 		order.save()
 		return redirect('cart')
+
+	if request.method == 'GET':
+		order = Order.objects.all().filter(user_id = user)
+		return render(request, 'cart.html', {'order': order})
 
