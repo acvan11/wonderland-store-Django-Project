@@ -11,7 +11,7 @@
 
 	{% endfor%}
 	<p>Total Price: ${{total }}</p>
-	<form method="POST" action="/payment">
+	<form method="POST" action="/checkout">
 	{% csrf_token %}
 	<button type="submit" class="btn btn-primary">Check Out
 	</button>

@@ -105,8 +105,10 @@ def cart_remove(request, pk):
 	Order.objects.get(id=pk).delete()
 	return redirect('cart')
 
-def payment(request):
-	return render(request, 'payment.html')
+def checkout(request):
+	return render(request, 'checkout.html')
 
+def proceed(request):
+	return render(request, 'proceed.html')
 
 
