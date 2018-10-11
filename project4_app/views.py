@@ -81,6 +81,7 @@ def logout(request):
 	auth.logout(request)
 	return redirect('product_list')
 
+
 def cart(request):
 	if request.method == 'POST':
 		product = Product.objects.get(pk = request.POST['product'])
@@ -99,4 +100,12 @@ def cart(request):
 		for order in orders:
 			total += order.price 
 		return render(request, 'cart.html', {'orders': orders, 'total': total})
+
+def cart_remove(request, pk):
+	Order.objects.get(id=pk).delete()
+	return redirect('cart')
+
+
+
+
 

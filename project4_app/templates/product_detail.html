@@ -10,16 +10,17 @@
 <p>Sales Price: {{ product.sales_price}}</p>
 
 <br><br><br>
-
+{% if request.user.is_superuser %}
 <a href="{% url 'product_delete' pk=product.pk %}" class="delete">Delete</a>
 <a href="{% url 'product_edit' pk=product.pk %}" class="detete">Edit</a>
+{% endif %}
 <form method="POST" action="/cart">
 	{% csrf_token %}
 	<input type="text" value="{{product.pk}}" hidden name="product">
 	<div class="form-group">
 		<input type="number" placeholder="Quantity" name="quantity">
 	</div>
-	<button type="submit" class="btn btn-primary">Add to cart
+	<button type="submit" class="btn btn-sm btn-primary">Add to cart
 	</button>
 </form>
 

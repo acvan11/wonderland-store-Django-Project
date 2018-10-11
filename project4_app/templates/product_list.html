@@ -17,5 +17,7 @@
 		
 	</div>
 </div>
+{% if request.user.is_superuser %}
 <a href="{% url 'product_create' %}">Add items</a>
+{% endif %}
 {% endblock %}
