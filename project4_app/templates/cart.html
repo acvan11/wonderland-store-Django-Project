@@ -13,7 +13,9 @@
 	<p>Total Price: ${{total }}</p>
 	<form method="POST" action="/checkout">
 	{% csrf_token %}
+	{% if total > 0 %}
 	<button type="submit" class="btn btn-primary">Check Out
 	</button>
+	{% endif %}
 </form>
 {% endblock %}

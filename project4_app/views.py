@@ -109,6 +109,9 @@ def checkout(request):
 	return render(request, 'checkout.html')
 
 def proceed(request):
+	orders = Order.objects.all().filter(user_id = request.user)
+	for order in orders:
+		order.delete()
 	return render(request, 'proceed.html')
 
 
