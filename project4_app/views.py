@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.shortcuts import render, redirect
-from .models import Product
+from .models import Product, Order
 from django.http import HttpResponse
 from .forms import ProductForm
 
@@ -83,16 +83,20 @@ def logout(request):
 
 def cart(request):
 	if request.method == 'POST':
+		product = Product.objects.get(pk = request.POST['product'])
 		order = Order(
-				product = request.POST['product'],
+				product = product,
 				quantity = request.POST['quantity'],
-				user_id = user,
+				user_id = request.user,
 			)
 		order.total_price()
 		order.save()
 		return redirect('cart')
 
 	if request.method == 'GET':
-		order = Order.objects.all().filter(user_id = user)
-		return render(request, 'cart.html', {'order': order})
+		total = 0
+		orders = Order.objects.all().filter(user_id = request.user)
+		for order in orders:
+			total += order.price 
+		return render(request, 'cart.html', {'orders': orders, 'total': total})
 
