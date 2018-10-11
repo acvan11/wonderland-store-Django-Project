@@ -81,3 +81,13 @@ def logout(request):
 	auth.logout(request)
 	return redirect('product_list')
 
+def cart(request):
+	if request.method == 'POST':
+		order = Order(
+				product = request.POST['product'],
+				quantity = request.POST['quantity'],
+			)
+		order.total_price()
+		order.save()
+		return redirect('cart')
+
