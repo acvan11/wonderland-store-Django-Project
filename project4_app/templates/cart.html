@@ -6,12 +6,14 @@
 		<p>Product: {{order.product.name }}</p>
 		<p>Price: ${{order.product.sales_price}}</p>
 		<p>Quantity: {{ order.quantity }}</p>
-		<a href="{% url 'cart_remove' pk=order.product.pk %}" class="remove">Remove</a>
+		<a href="{% url 'cart_remove' pk=order.pk %}" class="remove">Remove</a>
 		<hr/>
 
 	{% endfor%}
 	<p>Total Price: ${{total }}</p>
-
+	<form method="POST" action="/payment">
+	{% csrf_token %}
 	<button type="submit" class="btn btn-primary">Check Out
 	</button>
+</form>
 {% endblock %}
