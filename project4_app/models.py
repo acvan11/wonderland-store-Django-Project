@@ -1,5 +1,7 @@
 from django.db import models
 from django.db.models.signals import pre_save, post_save
+from django.contrib.auth.models import User
+
 
 # Create your models here.
 class Product(models.Model):
@@ -14,16 +16,16 @@ class Product(models.Model):
 	def __str__(self):
 		return self.name
 
-# class Order(models.Model):
-# 	product = models.ForeignKey(Product, on_delete=models.CASCADE)
-# 	user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
-# 	quantity = models.IntegerField()
-# 	price = models.IntegerField(default = 0)
+class Order(models.Model):
+	product = models.ForeignKey(Product, on_delete=models.CASCADE)
+	user_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True)
+	quantity = models.IntegerField()
+	price = models.FloatField(default = 0)
 
 
-#     def total_price(self):
-#         self.price = int(self.product.sales_price) * int(self.quantity)
+	def total_price(self):
+		self.price = int(self.product.sales_price) * int(self.quantity)
 
 
-#     def __str__(self):
-#         return str(self.price)
+	def __str__(self):
+		return str(self.price)
