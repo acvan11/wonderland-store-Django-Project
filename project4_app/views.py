@@ -74,14 +74,14 @@ def login(request):
         user = auth.authenticate(username = username, password=password)
         if user is not None:
             auth.login(request, user)
-            return redirect('product_list')
+            return redirect('home')
         else:            
             return render(request, 'login', { 'error': 'Invalid credentials' })
 
 
 def logout(request):
 	auth.logout(request)
-	return redirect('product_list')
+	return redirect('home')
 
 
 def cart(request):
