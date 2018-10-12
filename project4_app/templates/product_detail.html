@@ -12,15 +12,6 @@
 
 	<br><br><br>
 	
-	<div class="form-group">
-		<select name="quantity">
-			<option value="1" >1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-		</select>
-
-	</div>
 
 	{% if request.user.is_superuser %}
 	
@@ -33,6 +24,15 @@
 
 	<form method="POST" action="/cart">
 		{% csrf_token %}
+			<div class="form-group">
+		<select name="quantity">
+			<option value="1" >1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+		</select>
+	</div>
+
 		<input type="text" value="{{product.pk}}" hidden name="product">
 		<button type="submit" class="btn btn-sm btn-primary">Add to cart</button>
 	</form>

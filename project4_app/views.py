@@ -85,11 +85,12 @@ def logout(request):
 
 
 def cart(request):
+	print("REQUEST.POST	", request.POST.get('quantity'))
 	if request.method == 'POST':
 		product = Product.objects.get(pk = request.POST['product'])
 		order = Order(
 				product = product,
-				quantity = request.POST['quantity'],
+				quantity = request.POST.get('quantity',0),
 				user_id = request.user,
 			)
 		order.total_price()
