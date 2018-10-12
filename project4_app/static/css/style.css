@@ -44,19 +44,28 @@ input {
   background: whitesmoke;
 }
 input[type=submit],
-a.delete {
+a.delete, a.edit {
   width: auto;
   padding: 9px 15px;
   background-color: gray;
   border: 0;
   font-size: 14px;
   color: #FFFFFF;
+  border-radius: 5px;
 }
 a.delete {
   background-color: red;
 }
 a.edit {
   background-color: blue;
+  color: white;
+}
+.delete-and-edit a {
+  margin-right: 1.5rem;
+}
+
+.delete-and-edit {
+  margin-bottom: 2rem;
 }
 .product-photo {
   width: inherit;
@@ -78,4 +87,8 @@ a.no-fav {
 .fav:visited,
 .no-fav:visited {
   text-decoration: none;
+}
+.product-detail{
+  width: 80%;
+  height:100%;
 }

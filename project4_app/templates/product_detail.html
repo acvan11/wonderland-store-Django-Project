@@ -1,28 +1,41 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h2>{{ product.name }}</h2>
-<img src="{{ product.image_url}}" alt="product_photo" class="product-photo">
-<p>Brand: {{ product.brand}}</p>
-<p>Description: {{ product.description}}</p>
-<p>Status: {{ product.status}}</p>
-<p>Original Price: {{ product.price}}</p>
-<p>Sales Price: {{ product.sales_price}}</p>
+<div class="product-detail">
+	<h2>{{ product.name }}</h2>
+	<img src="{{ product.image_url}}" alt="product_photo" class="product-photo">
+	<p><b>Brand</b>: {{ product.brand}}</p>
+	<p><b>Description</b>: {{ product.description}}</p>
+	<p><b>Status</b>: {{ product.status}}</p>
+	<p><b>Original Price</b>: ${{ product.price}}</p>
+	<p><b>Sales Price</b>: ${{ product.sales_price}}</p>
 
-<br><br><br>
-{% if request.user.is_superuser %}
-<a href="{% url 'product_delete' pk=product.pk %}" class="delete">Delete</a>
-<a href="{% url 'product_edit' pk=product.pk %}" class="detete">Edit</a>
-{% endif %}
-<form method="POST" action="/cart">
-	{% csrf_token %}
-	<input type="text" value="{{product.pk}}" hidden name="product">
+	<br><br><br>
+	
 	<div class="form-group">
-		<input type="number" placeholder="Quantity" name="quantity">
-	</div>
-	<button type="submit" class="btn btn-sm btn-primary">Add to cart
-	</button>
-</form>
+		<select name="quantity">
+			<option value="1" >1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+		</select>
 
+	</div>
+
+	{% if request.user.is_superuser %}
+	
+	<div class="delete-and-edit">
+		<a href="{% url 'product_delete' pk=product.pk %}" class="delete">Delete</a>
+		<a href="{% url 'product_edit' pk=product.pk %}" class="edit">Edit</a>
+	</div>
+
+	{% endif %}
+
+	<form method="POST" action="/cart">
+		{% csrf_token %}
+		<input type="text" value="{{product.pk}}" hidden name="product">
+		<button type="submit" class="btn btn-sm btn-primary">Add to cart</button>
+	</form>
+</div>
 
 {% endblock %}

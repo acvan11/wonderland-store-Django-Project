@@ -5,6 +5,8 @@ from .models import Product, Order
 from django.http import HttpResponse
 from .forms import ProductForm
 
+def home(request):
+	return render(request, 'home.html')
 
 def product_list(request):
 	products = Product.objects.all()

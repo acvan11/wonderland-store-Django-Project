@@ -6,7 +6,8 @@ https://getbootstrap.com/examples/navbar/
   <div class="container-fluid">
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="{% url 'product_list' %}">Home</a></li>
+        <li class="active"><a href="{% url 'home' %}">Home</a></li>
+        <li class="active"><a href="{% url 'product_list' %}">Shopping</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
        {% if not user.is_authenticated %}
