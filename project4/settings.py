@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -74,13 +75,20 @@ WSGI_APPLICATION = 'project4.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'market',
-        'HOST': 'localhost',
-    }
-}
+#THIS IS FOR LOCAL SETTING
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'market',
+#         'HOST': 'localhost',
+#     }
+# }
+
+#THIS IS PRODUCTION SETTING FOR DATABASE
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(
+    default='postgres://wdhghwektefuai:5ca205814ed245c5be16dcc25d123b9135dcc1c379c304d05bdf7fc011b0e2d4@ec2-184-72-234-230.compute-1.amazonaws.com:5432/dbk499ss9ib72e'    
+    )
 
 
 # Password validation
