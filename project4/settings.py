@@ -43,6 +43,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -88,7 +89,7 @@ WSGI_APPLICATION = 'project4.wsgi.application'
 DATABASES = {}
 DATABASES['default'] = dj_database_url.config(
     default='postgres://wdhghwektefuai:5ca205814ed245c5be16dcc25d123b9135dcc1c379c304d05bdf7fc011b0e2d4@ec2-184-72-234-230.compute-1.amazonaws.com:5432/dbk499ss9ib72e'    
-    )
+)
 
 
 # Password validation
@@ -134,5 +135,4 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'project4_app/static'),
-    os.path.join(BASE_DIR, 'project4_app'),
 )

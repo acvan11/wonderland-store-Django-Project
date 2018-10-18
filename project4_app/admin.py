@@ -10,6 +10,7 @@ class ProductAdmin(admin.ModelAdmin):
 	list_filter = ["price", "sales_price"]
 	# we could edit the sales_price and price 
 	list_editable = ["sales_price", "price"]
+	
 	class Meta:
 		model = Product
 

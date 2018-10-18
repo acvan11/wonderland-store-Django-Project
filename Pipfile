@@ -4,12 +4,13 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
+pytz = "==2018.5"
+django = "==2.1.2"
 gunicorn = "*"
-requests = "*"
 dj-database-url = "*"
-django-heroku = "*"
-
-[dev-packages]
+django-heroku = "*" 
+django-tinymce = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.7"
