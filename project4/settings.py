@@ -26,7 +26,7 @@ SECRET_KEY = 'r7y)3s1(y7#19i3-mc8!_dp12aq-$h%%)o#10p9camh!&_yt^s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['wonderlandstore.herokuapp.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
